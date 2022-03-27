@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float moveForce = 5f;
-    private float jumpForce = 5f;
+    [Header("References")]
+    public Rigidbody playerRb;
+
+    [Header("Player Movement")]
+    public float moveForce = 5f;
+    public float jumpForce = 5f;
+    private float horizontalInput;
+    private float verticalInput;
     void Start()
     {
 
@@ -19,19 +25,12 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        if (Input.GetKeyDown("space"))
-            GetComponent<Rigidbody>().velocity = new Vector3(0, jumpForce, 0);
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown("up"))
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveForce);
+        playerRb.velocity = new Vector3(moveForce * horizontalInput, playerRb.velocity.y, moveForce * verticalInput);
 
-        if (Input.GetKeyDown("down"))
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -moveForce);
-
-        if (Input.GetKeyDown("left"))
-            GetComponent<Rigidbody>().velocity = new Vector3(-moveForce, 0, 0);
-
-        if (Input.GetKeyDown("right"))
-            GetComponent<Rigidbody>().velocity = new Vector3(moveForce, 0, 0);
+        if (Input.GetButtonDown("Jump"))
+            playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, playerRb.velocity.z);
     }
 }
