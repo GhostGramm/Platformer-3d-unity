@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody playerRb;
-    public CharacterController playerCharacterController;
     public Transform FootLocation;
     public LayerMask GroundLayer;
 
@@ -34,11 +34,39 @@ public class PlayerController : MonoBehaviour
         playerRb.velocity = new Vector3(moveForce * horizontalInput, playerRb.velocity.y, moveForce * verticalInput);
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
-            playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, playerRb.velocity.z);
+            Jump();
+
+    }
+
+    void Jump()
+    {
+        playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, playerRb.velocity.z);
     }
 
     bool IsGrounded()
     {
         return Physics.CheckSphere(FootLocation.position, 0.1f, GroundLayer);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player Killed");
+            Death(true);
+            GameManager.instance.OnPlayerLoseLife();
+        }
+
+        if (collision.gameObject.CompareTag("Enemy Head"))
+        {
+            Jump();
+            Destroy(collision.transform.parent.parent.gameObject);
+        }
+    }
+
+    void Death(bool condition)
+    {
+        GetComponent<MeshRenderer>().enabled = !condition;
+        GetComponent<Rigidbody>().isKinematic = condition;
     }
 }
