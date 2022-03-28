@@ -29,4 +29,37 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public IEnumerator LerpPlatformColor(GameObject Platform)
+    {
+        var currentColor = Platform.GetComponent<MeshRenderer>().material.color;
+        var DangerColor = Color.red;
+        Platform.GetComponent<MeshRenderer>().material.color = Color.Lerp(currentColor, DangerColor, 0.01f);
+
+        yield return new WaitForSeconds(3f);
+        Platform.GetComponent<MeshRenderer>().material.color = DangerColor;
+        if (Platform.GetComponent<MeshRenderer>().material.color == DangerColor)
+        {
+            FallPlatform(Platform);
+
+        }
+    }
+
+    //public void LerpPlatformColor(GameObject Platform)
+    //{
+    //    var currentColor = Platform.GetComponent<MeshRenderer>().material.color;
+    //    var DangerColor = Color.red;
+    //    Platform.GetComponent<MeshRenderer>().material.color = Color.Lerp(currentColor, DangerColor, 0.005f);
+
+    //}
+
+    public void FallPlatform(GameObject Platform)
+    {
+        print("fall platform");
+        if (Platform.GetComponent<Rigidbody>() != null)
+            return;
+
+        Platform.AddComponent<Rigidbody>();
+        Platform.GetComponent<BoxCollider>().enabled = false;
+    }
 }

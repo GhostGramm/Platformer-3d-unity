@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
             Jump();
             Destroy(collision.transform.parent.parent.gameObject);
         }
+
     }
 
     void Death(bool condition)

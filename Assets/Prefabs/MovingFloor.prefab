@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6880365593518461242}
   - component: {fileID: 6880365593518461243}
   - component: {fileID: 6183354483697795093}
-  - component: {fileID: 6183354483697795090}
+  - component: {fileID: 4344917083881333171}
   m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   - {fileID: 6183354482364524614}
   - {fileID: 6183354483959121742}
   Speed: 1
---- !u!114 &6183354483697795090
+--- !u!114 &4344917083881333171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,6 +215,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6880365593518461244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5cc2d0155cf17499e5e7970182b4d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 64c9a6f57aed91c419a4eca6bea11e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorType: 1
+  isDestroying: 0
