@@ -45,14 +45,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void LerpPlatformColor(GameObject Platform)
-    //{
-    //    var currentColor = Platform.GetComponent<MeshRenderer>().material.color;
-    //    var DangerColor = Color.red;
-    //    Platform.GetComponent<MeshRenderer>().material.color = Color.Lerp(currentColor, DangerColor, 0.005f);
-
-    //}
-
     public void FallPlatform(GameObject Platform)
     {
         print("fall platform");

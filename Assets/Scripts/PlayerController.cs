@@ -63,6 +63,11 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.transform.parent.parent.gameObject);
         }
 
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            GameManager.instance.RestartLevel();
+        }
+
     }
 
     void Death(bool condition)
