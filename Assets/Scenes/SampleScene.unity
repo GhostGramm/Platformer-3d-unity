@@ -549,7 +549,7 @@ Transform:
   m_Children:
   - {fileID: 1146083973}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &478813425
 GameObject:
@@ -872,7 +872,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  moveForce: 5
+  moveSpeed: 5
   jumpForce: 5
 --- !u!1 &800266048
 GameObject:
@@ -994,11 +994,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.1819464, y: -0, z: -0, w: 0.9833085}
-  m_LocalPosition: {x: -0.38, y: 4.219, z: -7.111}
+  m_LocalPosition: {x: -0.38, y: 4.634, z: -8.987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4130577475860040232}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 20.966, y: 0, z: 0}
 --- !u!1 &1146083972
 GameObject:
@@ -1129,7 +1129,7 @@ Transform:
   - {fileID: 741706925}
   - {fileID: 347644104}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1535698164
 GameObject:
@@ -2363,7 +2363,7 @@ GameObject:
   - component: {fileID: 3609937436021248150}
   m_Layer: 0
   m_Name: erika_archer
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2385,7 +2385,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  moveForce: 5
+  moveSpeed: 5
   jumpForce: 5
 --- !u!54 &3609937436021248148
 Rigidbody:
@@ -2615,16 +2615,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3609937436021248146}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09, y: 0.244, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.415, z: -1.876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5894229656569934173}
   - {fileID: 4119144363193683233}
   - {fileID: 478813426}
-  - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4163912895267269054
 GameObject:

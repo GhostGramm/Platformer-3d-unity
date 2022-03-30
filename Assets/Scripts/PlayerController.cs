@@ -9,15 +9,17 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
     public Transform FootLocation;
     public LayerMask GroundLayer;
+    private Animator animator;
 
     [Header("Player Movement")]
-    public float moveForce = 5f;
+    public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    public float rotationSpeed = 720f;
     private float horizontalInput;
     private float verticalInput;
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,7 +33,23 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        playerRb.velocity = new Vector3(moveForce * horizontalInput, playerRb.velocity.y, moveForce * verticalInput);
+
+        //playerRb.velocity = new Vector3(moveForce * horizontalInput, playerRb.velocity.y, moveForce * verticalInput);
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        movementDirection.Normalize();
+
+        transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
+
+        if (movementDirection != Vector3.zero)
+        {
+            animator.SetBool("IsMoving", true);
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
             Jump();

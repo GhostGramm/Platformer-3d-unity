@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
 
     public void FallPlatform(GameObject Platform)
     {
-        print("fall platform");
         if (Platform.GetComponent<Rigidbody>() != null)
             return;
 
