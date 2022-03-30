@@ -72,7 +72,8 @@ public class PlayerController : MonoBehaviour
 
     void Death(bool condition)
     {
-        GetComponent<MeshRenderer>().enabled = !condition;
+        //GetComponent<MeshRenderer>().enabled = !condition;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = !condition;
         GetComponent<Rigidbody>().isKinematic = condition;
     }
 }

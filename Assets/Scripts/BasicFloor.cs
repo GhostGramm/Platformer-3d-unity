@@ -25,7 +25,7 @@ public class BasicFloor : MonoBehaviour
                     isDestroying = true;
                 break;
             case FloorType.MovingFloor:
-                if (collision.gameObject.name == "Player")
+                if (collision.gameObject.CompareTag("Player"))
                     collision.gameObject.transform.SetParent(transform);
                 break;
             default:
@@ -39,7 +39,7 @@ public class BasicFloor : MonoBehaviour
             case FloorType.NormalFloor:
                 break;
             case FloorType.MovingFloor:
-                if (collision.gameObject.name == "Player")
+                if (collision.gameObject.CompareTag("Player"))
                     collision.gameObject.transform.SetParent(null);
                 break;
             default:

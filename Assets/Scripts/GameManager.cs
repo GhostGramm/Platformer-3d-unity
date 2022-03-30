@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerLoseLife()
     {
-        Debug.Log("called");
         Invoke("RestartLevel", 1.3f);
     }
 
