@@ -15,6 +15,8 @@ public class SlimeController : MonoBehaviour
 
     private float ySpeed;
     private float originalStepOffset;
+    public bool isJumping;
+    public bool isGrounded;
 
     void Start()
     {
@@ -22,7 +24,6 @@ public class SlimeController : MonoBehaviour
         originalStepOffset = characterController.stepOffset;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Movement();
@@ -41,34 +42,53 @@ public class SlimeController : MonoBehaviour
 
         if (characterController.isGrounded)
         {
+            print("Character is grounded");
+            isGrounded = true;
+            animator.SetBool("IsGrounded", true);
+
+            animator.SetBool("IsJumping", false);
+            isJumping = false;
+
+            animator.SetBool("IsFalling", false);
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
             if (Input.GetButtonDown("Jump"))
             {
+                print("Jump button pressed");
+                animator.SetBool("IsJumping", true);
+                isJumping = true;
                 ySpeed = jumpSpeed;
             }
         }
         else
         {
             animator.SetBool("IsMoving", false);
+            animator.SetBool("IsGrounded", false);
+            animator.SetBool("IsFalling", true);
+            isGrounded = false;
+
+            if ((isJumping && ySpeed < 0) || ySpeed < -2)
+            {
+                animator.SetBool("IsFalling", true);
+            }
+
             characterController.stepOffset = 0;
         }
 
+
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = ySpeed;
-        //transform.Translate(movementDirection * magnitude * Time.deltaTime, Space.World);
+        transform.Translate(movementDirection * magnitude * Time.deltaTime, Space.World);
         characterController.Move(velocity * Time.deltaTime);
 
         if (movementDirection != Vector3.zero)
         {
-            print("true");
             animator.SetBool("IsMoving", true);
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
         else
         {
-            print("false");
             animator.SetBool("IsMoving", false);
         }
 
