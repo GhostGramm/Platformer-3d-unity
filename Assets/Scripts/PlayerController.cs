@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         movementDirection.Normalize();
 
         transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
-
+        print(movementDirection);
         if (movementDirection != Vector3.zero)
         {
             animator.SetBool("IsMoving", true);
